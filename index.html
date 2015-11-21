@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="cs/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>LikeMinds</title>
 </head>
 <body>
 	<h1>LikeMinds</h1>
 	<h2>Find out where people in your demographic are hanging out right now</h2>
 
-	<form>
-		<input type="text" name="area" placeholder="City or Zip Code">
-		<div class="dropdown">
+		<div id="age" class="dropdown">
 			<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Age Group
 			<span class="caret"></span></button>
 			<ul class="dropdown-menu">
@@ -21,16 +22,19 @@
 		    	<li><a href="#">45-54</a></li>
 		    	<li><a href="#">55+</a></li>
 		    </ul>
-		    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Venue Type
+		</div>
+		<input id="user-location" type="text" name="area" placeholder="City or Zip Code">
+		<div id="venue-type" class="dropdown">  
+		   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Venue Type
 			<span class="caret"></span></button>
-		    <ul class="venue-dropdown">
+			<ul class="dropdown-menu">
 		    	<li><a href="#">Food</a></li>
 		    	<li><a href="#">Drinks</a></li>
 		    	<li><a href="#">Top Venues</a></li>
 		    	<li><a href="#">The next hot thing</a></li>
 		    </ul>
 		</div>
-	</form>
+
 	
 </body>
 </html>

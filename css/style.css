@@ -1,0 +1,19 @@
+body {
+	text-align: center;
+}
+
+h2 {
+	margin-bottom: 2em;
+}
+
+#age {
+	float: left;
+}
+
+#user-location {
+	text-align: center;
+}
+
+#venue-type {
+	float: right;
+}
