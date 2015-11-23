@@ -36,6 +36,11 @@ form {
     background-color: #f23745;
     border-color: #f23745;
 }
+#submit {
+	width: 5em;
+	height: 2em;
+	border-radius: 5px;
+}
 #age {
 	float: left;
 	margin-right: 2em;
@@ -51,7 +56,10 @@ form {
 	border: 1px solid #161623;
 	width: 25em;
 	border-radius: 5px;
-	margin: 0 auto;
+	margin: 2em auto;
+}
+.place {
+	padding: 2em;
 }
 .error {
 	display: hidden;
