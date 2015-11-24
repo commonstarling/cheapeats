@@ -14,9 +14,9 @@
 		<h1>LikeMinds</h1>
 		<h2>Find out where people in your demographic are hanging out right now</h2>
 		
-			<form>
+			<form id="user-search">
 				<div id="age" class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Age Group
+					<button class="btn btn-primary dropdown-toggle" type="button" name="userAge" data-toggle="dropdown">Age Group
 					<span class="caret"></span></button>
 					<ul class="dropdown-menu">
 				    	<li><a href="#">18-24</a></li>
@@ -28,7 +28,7 @@
 				</div>
 				<input id="user-location" type="text" name="area" placeholder="City or Zip Code">
 				<div id="venue-type" class="dropdown">  
-				   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Venue Type
+				   <button class="btn btn-primary dropdown-toggle" type="button" name="locationTypes" data-toggle="dropdown">Venue Type
 					<span class="caret"></span></button>
 					<ul class="dropdown-menu">
 				    	<li><a href="#">Food</a></li>
@@ -37,29 +37,36 @@
 				    	<li><a href="#">The next hot thing</a></li>
 				    </ul>
 				</div>
+				<br>
+			<br>
+			<input id="submit-button" type="submit" value="Submit">
 			</form>
-			<br>
-			<br>
-			<button id="submit">Submit</button>
+			
 	</header>
-	<div class="template">
-			<dl class="result place">
-				<dt>Venue name:</dt>
-					<dd class="venue-name">bopNgrill</dd>
-					<br>
-				<dt>Address:</dt>
-					<dd class="venue-address">6604 N Sheridan Rd, Chicago, IL, 60626, United States</dd>
-					<br>
-				<dt>Website:</dt>
-					<dd class="venue-site"><a href="http://bngrill.com" target="_blank">http://bngrill.com</a></dd>
-					<br>
-				<dt>Top tip:</dt>
-					<dd class="venue-tip">Try the kimchi bacon cheese fries from our 100 Best list.</dd>
-					<br>
-			</dl>
-			<!--<div class="error">
-				<p>Uh-oh! Something went wrong with your request!</p>
-			</div>-->
-	</div>
+	<div class="container">
+		<div class="results-container">
+				<div class="search-results"></div>
+				<div class="results"></div>
+		</div>
+		<div class="template hidden">
+				<dl class="result place">
+					<dt>Venue name:</dt>
+						<dd class="venue-name"></dd>
+						<br>
+					<dt>Address:</dt>
+						<dd class="venue-address"></dd>
+						<br>
+					<dt>Website:</dt>
+						<dd class="venue-site"><a href="" target="_blank"></a></dd>
+						<br>
+					<dt>Top tip:</dt>
+						<dd class="venue-tip"></dd>
+						<br>
+				</dl>
+				<div class="error hidden">
+					<p>Uh-oh! Something went wrong with your request!</p>
+				</div>
+		</div>
+	</div>	
 </body>
 </html>
