@@ -1,36 +1,18 @@
-var showVenue = function(search) {
-	
-	// clone the result template code
-	var result = $('.template .place').clone();
-	
-	// Set the venue name in result
-	var venueName = result.find('.venue-name');
-	/*venueName.text*/console.log(search.venue.name);
+//function to clear input box after search
+function resetForm() {
+	$('#user-location').val('');
+}
 
-	// set the venue address in result
-	var venueAddress = result.find('.venue-address');
-	/*venueAddress.text*/console.log(search.location.formattedAddress);
-
-	// show venue website
-	var venueSite= result.find('.venue-site');
-	/*venueSite.html*/console.log('<a target="_blank" href="'+ search.venue.url + '">' + search.venue.url + '</a>'
-
-	// show venue tip
-	var venueTip = result.find('.venue-tip');
-	/*venueTip.text*/console.log(******question.view_count);
-	);
-
-	return result;
-};
-
-var getVenues = function(zip, type) {
+//function to get search data
+var getVenues = function(zip) {
 	
 	// the parameters we need to pass in our request to FourSquare's API
 	var request = 	{			near: zip,
 								client_id: 'AF2DLYUXC4545CEDCOO4OJGZPJCIQON5HZWRABVHAF4T4TSK',
 								client_secret: '1YAHLVR1I4OWLG3QTOSPZ3JFPSNWJZDETBRNEJY30PGMHSOB',
-								section: type,
+								section: 'topPicks',
 								openNow: '1',
+								sortByDistance: '1',
 								v: '20151121',
 					};
 	
@@ -41,33 +23,26 @@ var getVenues = function(zip, type) {
 				type: "GET",
 				})
 		.done(function(result){ //this waits for the ajax to return with a succesful promise object
-			var searchResults = showSearchResults(*******request.tagged, result.items.length);
-
-			$('.search-results').html(searchResults);
-			//$.each is a higher order function. It takes an array and a function as an argument.
-			//The function is executed once for each item in the array.
-			$.each(****result.items, function(i, item) {
-				var venue = showVenue(item);
-				$('.results').append(venue);
-			});
+			for (var i = 0; i <= 5; i++) {	
+				//console.log(result.response);		
+				$('.results-container').append(
+					'<b>Venue Name:</b><br><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a>' +
+					'<b><br>Venue Type:</b><br>' + result.response.groups[0].items[i].venue.categories[0].name +
+					'<b><br>Address:</b><br>' + result.response.groups[0].items[i].venue.location.formattedAddress[0] + '<br>' + result.response.groups[0].items[i].venue.location.formattedAddress[1] +
+					'<b><br>Phone:</b><br>' + 	result.response.groups[0].items[i].venue.contact.formattedPhone +
+					'<b><br>Hours:</b><br>' +	result.response.groups[0].items[i].venue.hours.status +
+					'<b><br>You should know:</b><br>' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
+					);
+			};
 		})
-};
 
-var showError = function(error){
-	var errorElem = $('.template .error').clone();
-	var errorText = '<p> Uh-oh! Something went wrong with your request! </p>';
-	errorElem.append(errorText);
 };
-
 //App kicks in here
-$(function() {
-	$('#user-search').submit(function(){
-		// zero out results if previous search has run
-		$('.results').html('');
-		// get the value of the tags the user submitted
-		var zip = $(this).find("input[name='area']").val();
-		var type = $(this).find("input[name='locationTypes']").val();
-		var age = $(this).find("input[name='userAge']").val();
-		getVenues(zip, type);
-	});
+$(document).ready(function () {
+		$("#submit-button").on('click', function(e) {
+	        e.preventDefault();
+	        var userLocation = $("#user-location").val();
+	        getVenues(userLocation);
+	        resetForm();
+	    });
 });
