@@ -10,7 +10,7 @@ var getVenues = function(zip) {
 	var request = 	{			near: zip,
 								client_id: 'AF2DLYUXC4545CEDCOO4OJGZPJCIQON5HZWRABVHAF4T4TSK',
 								client_secret: '1YAHLVR1I4OWLG3QTOSPZ3JFPSNWJZDETBRNEJY30PGMHSOB',
-								section: 'topPicks',
+								section: 'food',
 								openNow: '1',
 								sortByDistance: '1',
 								v: '20151121',
@@ -23,26 +23,30 @@ var getVenues = function(zip) {
 				type: "GET",
 				})
 		.done(function(result){ //this waits for the ajax to return with a succesful promise object
-			for (var i = 0; i <= 5; i++) {	
+			for (var i = 0; i <= 10; i++) {	
 				//console.log(result.response);		
 				$('.results-container').append(
-					'<b>Venue Name:</b><br><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a>' +
-					'<b><br>Venue Type:</b><br>' + result.response.groups[0].items[i].venue.categories[0].name +
-					'<b><br>Address:</b><br>' + result.response.groups[0].items[i].venue.location.formattedAddress[0] + '<br>' + result.response.groups[0].items[i].venue.location.formattedAddress[1] +
-					'<b><br>Phone:</b><br>' + 	result.response.groups[0].items[i].venue.contact.formattedPhone +
-					'<b><br>Hours:</b><br>' +	result.response.groups[0].items[i].venue.hours.status +
-					'<b><br>You should know:</b><br>' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
+					'<br><b><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a></b></br>' +
+					'<br><b><span>Venue Type:</span></b>	' + result.response.groups[0].items[i].venue.categories[0].name +
+					'<br><b><span>Address:</span></b>	' + result.response.groups[0].items[i].venue.location.formattedAddress[0] + ', ' + result.response.groups[0].items[i].venue.location.formattedAddress[1] +
+					'<br><b><span>Phone:</span></b>	' + result.response.groups[0].items[i].venue.contact.formattedPhone +
+					'<br><b><span>Hours:</span></b>	' +	result.response.groups[0].items[i].venue.hours.status +
+					'<br><b><span>You should know:</span></b>	' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
 					);
 			};
 		})
+		.fail(function(jqXHR, error){ //this waits for the ajax to return with an error promise object
+			var errorElem = showError(error);
+			$('.results-container').append("Uh-oh! Something went wrong with your request!");
+		});
 
 };
 //App kicks in here
 $(document).ready(function () {
 		$("#submit-button").on('click', function(e) {
 	        e.preventDefault();
-	        var userLocation = $("#user-location").val();
-	        getVenues(userLocation);
+	        var zip = $("#user-location").val();
+	        getVenues(zip);
 	        resetForm();
 	    });
 });
