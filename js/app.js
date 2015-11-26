@@ -11,6 +11,7 @@ function hideDisplay() {
 //function to display search results
 function showResults(result) {
 	$('.results-container').show();
+	$('.results-container').html('');
 	for (var i = 0; i <= 10; i++) {	
 				$('.results-container').append(
 					'<br><b><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a></b></br>' +
