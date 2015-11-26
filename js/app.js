@@ -3,6 +3,26 @@ function resetForm() {
 	$('#user-location').val('');
 }
 
+//function to hide results display before the search
+function hideDisplay() {
+	$('.results-container').hide();
+}
+
+//function to display search results
+function showResults(result) {
+	$('.results-container').show();
+	for (var i = 0; i <= 10; i++) {	
+				$('.results-container').append(
+					'<br><b><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a></b></br>' +
+					'<br><b><span>Venue Type:</span></b>	' + result.response.groups[0].items[i].venue.categories[0].name +
+					'<br><b><span>Address:</span></b>	' + result.response.groups[0].items[i].venue.location.formattedAddress[0] + ', ' + result.response.groups[0].items[i].venue.location.formattedAddress[1] +
+					'<br><b><span>Phone:</span></b>	' + result.response.groups[0].items[i].venue.contact.formattedPhone +
+					'<br><b><span>Hours:</span></b>	' +	result.response.groups[0].items[i].venue.hours.status +
+					'<br><b><span>You should know:</span></b>	' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
+					);
+			};
+}
+
 //function to get search data
 var getVenues = function(zip) {
 	
@@ -23,17 +43,7 @@ var getVenues = function(zip) {
 				type: "GET",
 				})
 		.done(function(result){ //this waits for the ajax to return with a succesful promise object
-			for (var i = 0; i <= 10; i++) {	
-				//console.log(result.response);		
-				$('.results-container').append(
-					'<br><b><a target="_blank" href="' + result.response.groups[0].items[i].venue.url + '">' + result.response.groups[0].items[i].venue.name + '</a></b></br>' +
-					'<br><b><span>Venue Type:</span></b>	' + result.response.groups[0].items[i].venue.categories[0].name +
-					'<br><b><span>Address:</span></b>	' + result.response.groups[0].items[i].venue.location.formattedAddress[0] + ', ' + result.response.groups[0].items[i].venue.location.formattedAddress[1] +
-					'<br><b><span>Phone:</span></b>	' + result.response.groups[0].items[i].venue.contact.formattedPhone +
-					'<br><b><span>Hours:</span></b>	' +	result.response.groups[0].items[i].venue.hours.status +
-					'<br><b><span>You should know:</span></b>	' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
-					);
-			};
+			showResults(result);
 		})
 		.fail(function(jqXHR, error){ //this waits for the ajax to return with an error promise object
 			var errorElem = showError(error);
@@ -41,12 +51,14 @@ var getVenues = function(zip) {
 		});
 
 };
+
 //App kicks in here
 $(document).ready(function () {
-		$("#submit-button").on('click', function(e) {
-	        e.preventDefault();
-	        var zip = $("#user-location").val();
-	        getVenues(zip);
-	        resetForm();
-	    });
+	hideDisplay();
+	$("#submit-button").on('click', function(e) {
+	    e.preventDefault();
+	    var zip = $("#user-location").val();
+	    getVenues(zip);
+	    resetForm();
+	});
 });

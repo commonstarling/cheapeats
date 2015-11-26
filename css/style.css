@@ -11,7 +11,7 @@ header {
 	margin: 0 auto;
 	background-color: #282828;
 	height: 25em;
-	width: 60%;
+	width: 70%;
 	border-radius: 50px;
 }
 h1 {
@@ -27,6 +27,7 @@ h2 {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	text-shadow: 2px 2px gray;
+	font-size: 2em;
 }
 span {
 	color: #FF69B4;
@@ -37,23 +38,10 @@ span {
 form {
 	display: inline-block;
 }
-.btn-primary, .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn-primary:hover {
-    color: #fff;
-    background-color: #f23745;
-    border-color: #f23745;
-}
 #submit-button {
 	width: 5em;
 	height: 2em;
 	border-radius: 5px;
-}
-#age {
-	float: left;
-	margin-right: 2em;
-}
-#venue-type {
-	float: right;
-	margin-left: 2em;
 }
 #user-location {
 	margin-top: .25em;
