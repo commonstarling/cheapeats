@@ -1,15 +1,15 @@
 //function to clear input box after search
-function resetForm() {
+var resetForm = function() {
 	$('#user-location').val('');
 }
 
 //function to hide results display before the search
-function hideDisplay() {
+var hideDisplay = function() {
 	$('.results-container').hide();
 }
 
 //function to display search results
-function showResults(result) {
+var showResults = function(result) {
 	$('.results-container').show();
 	$('.results-container').html('');
 	for (var i = 0; i <= 10; i++) {	
@@ -22,7 +22,7 @@ function showResults(result) {
 					'<br><b><span>You should know:</span></b>	' + result.response.groups[0].items[i].tips[0].text + '<br><br>'
 					);
 			};
-}
+};
 
 //function to get search data
 var getVenues = function(zip) {
